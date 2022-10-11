@@ -1,0 +1,5 @@
+ting ./home 1000
+gin ./abort 2000
+ting ./move 3000
+gin ./action 4000
+ting ./miss 6000
