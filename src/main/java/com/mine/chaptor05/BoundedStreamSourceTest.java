@@ -5,10 +5,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import java.util.ArrayList;
 
-/**
- * 读取有界流
- */
-public class SourceTest {
+public class BoundedStreamSourceTest {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
@@ -36,7 +33,7 @@ public class SourceTest {
         boundedStream1.print("boundedStream1");
         boundedStream2.print("boundedStream2");
         boundedStream3.print("boundedStream3");
-        boundedStream3.print("boundedStream4");
+        boundedStream4.print("boundedStream4");
 
         env.execute();
     }
