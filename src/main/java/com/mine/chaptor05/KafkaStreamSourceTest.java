@@ -13,8 +13,8 @@ public class KafkaStreamSourceTest {
         env.setParallelism(1);
 
         KafkaSource<String> source = KafkaSource.<String>builder()
-            .setBootstrapServers("brokers")
-            .setTopics("input-topic")
+            .setBootstrapServers("127.0.0.1:9092")
+            .setTopics("clicks")
             .setGroupId("my-group")
             .setStartingOffsets(OffsetsInitializer.earliest())
             .setValueOnlyDeserializer(new SimpleStringSchema())
