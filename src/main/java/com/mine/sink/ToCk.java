@@ -19,13 +19,11 @@ public class ToCk {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
-        env.enableCheckpointing(500);
         env.setRestartStrategy(RestartStrategies.fixedDelayRestart(4, 2000));
 
+        env.enableCheckpointing(500, CheckpointingMode.EXACTLY_ONCE);
         CheckpointConfig checkpointConfig = env.getCheckpointConfig();
         checkpointConfig.setExternalizedCheckpointCleanup(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-
-        checkpointConfig.setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
         checkpointConfig.setCheckpointStorage(new FileSystemCheckpointStorage("file:///Users/xiaoshaojian/Documents/Codes/Flink/FlinkLearn/input/checkpoint"));
 
         SingleOutputStreamOperator<String> data = Kafka.getData(env);
@@ -33,7 +31,6 @@ public class ToCk {
         // Kafka 事务超时时间
         Properties properties = new Properties();
         properties.put(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 10000);
-
         KafkaSink<String> firstSink = KafkaSink.<String>builder()
             .setBootstrapServers("106.55.198.234:9093,106.55.198.234:9094")
             .setRecordSerializer(
@@ -47,7 +44,7 @@ public class ToCk {
             .setKafkaProducerConfig(properties)
             .build();
 
-        data.sinkTo(firstSink);
+//        data.sinkTo(firstSink);
 
         env.execute();
     }
