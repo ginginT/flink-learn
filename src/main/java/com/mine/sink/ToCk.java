@@ -3,9 +3,9 @@ package com.mine.sink;
 import com.mine.datasource.Kafka;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.connector.base.DeliveryGuarantee;
-import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
-import org.apache.flink.connector.kafka.sink.KafkaSink;
+//import org.apache.flink.connector.base.DeliveryGuarantee;
+//import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+//import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.runtime.state.storage.FileSystemCheckpointStorage;
 import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -31,18 +31,18 @@ public class ToCk {
         // Kafka 事务超时时间
         Properties properties = new Properties();
         properties.put(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 10000);
-        KafkaSink<String> firstSink = KafkaSink.<String>builder()
-            .setBootstrapServers("106.55.198.234:9093,106.55.198.234:9094")
-            .setRecordSerializer(
-                KafkaRecordSerializationSchema.builder()
-                    .setTopic("firstSink")
-                    .setKeySerializationSchema(new SimpleStringSchema())
-                    .setValueSerializationSchema(new SimpleStringSchema())
-                    .build()
-            )
-            .setDeliverGuarantee(DeliveryGuarantee.EXACTLY_ONCE)
-            .setKafkaProducerConfig(properties)
-            .build();
+//        KafkaSink<String> firstSink = KafkaSink.<String>builder()
+//            .setBootstrapServers("106.55.198.234:9093,106.55.198.234:9094")
+//            .setRecordSerializer(
+//                KafkaRecordSerializationSchema.builder()
+//                    .setTopic("firstSink")
+//                    .setKeySerializationSchema(new SimpleStringSchema())
+//                    .setValueSerializationSchema(new SimpleStringSchema())
+//                    .build()
+//            )
+//            .setDeliverGuarantee(DeliveryGuarantee.EXACTLY_ONCE)
+//            .setKafkaProducerConfig(properties)
+//            .build();
 
 //        data.sinkTo(firstSink);
 
