@@ -32,7 +32,7 @@ import java.util.Map;
 public class Kafka {
     public static SingleOutputStreamOperator<String> getData(StreamExecutionEnvironment env) {
         KafkaSource<String> source = KafkaSource.<String>builder()
-            .setBootstrapServers("106.55.198.234:9093,106.55.198.234:9094")
+            .setBootstrapServers("127.0.0.1:9092")
             .setTopics("first")
             .setGroupId("my-group")
             .setStartingOffsets(OffsetsInitializer.latest())

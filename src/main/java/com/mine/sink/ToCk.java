@@ -32,7 +32,7 @@ public class ToCk {
         Properties properties = new Properties();
         properties.put(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 10000);
 //        KafkaSink<String> firstSink = KafkaSink.<String>builder()
-//            .setBootstrapServers("106.55.198.234:9093,106.55.198.234:9094")
+//            .setBootstrapServers("127.0.0.1:9092")
 //            .setRecordSerializer(
 //                KafkaRecordSerializationSchema.builder()
 //                    .setTopic("firstSink")
